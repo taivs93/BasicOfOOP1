@@ -49,11 +49,11 @@ public class StudentManager {
             System.out.println("Không tìm thấy ID sinh viên");
             return;
         }
-        System.out.println(existedStudent);
+        System.out.println(existedStudent.get());
     }
     public void getStudentsByName(String inputName){
         List<Student> studentsWithInputName = studentList.stream().filter(student -> student.getName().contains(inputName)).toList();
-        if (studentsWithInputName.isEmpty()) System.out.println("Không tìm thấy sinh viên thỏa maãn");
+        if (studentsWithInputName.isEmpty()) System.out.println("Không tìm thấy sinh viên thỏa mãn");
         else studentsWithInputName.forEach(System.out::println);
     }
     public void sortStudentListByName(){
