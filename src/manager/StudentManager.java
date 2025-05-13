@@ -38,7 +38,7 @@ public class StudentManager {
         studentList.remove(existedStudent.get());
         System.out.println("Xóa sinh viên thành công");
     }
-    public Optional<Student> findStudentById(String studentId) {
+    private Optional<Student> findStudentById(String studentId) {
         return studentList.stream()
                 .filter(student -> student.getId().equals(studentId))
                 .findFirst();
