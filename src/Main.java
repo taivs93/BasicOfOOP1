@@ -1,3 +1,4 @@
+import entity.Selection;
 import entity.Student;
 import manager.StudentManager;
 import java.util.Scanner;
@@ -12,41 +13,42 @@ public class Main {
         while(isInUsed){
             menu();
             int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
+            Selection selection = Selection.getSelectionFromValue(choice);
+            switch (selection) {
+                case ADD:
                     student = inputStudent();
                     studentManager.addStudent(student);
                     break;
-                case 2:
+                case UPDATE:
                     student = inputStudent();
                     studentManager.updateStudent(student);
                     break;
-                case 3:
+                case DELETE:
                     System.out.print("Nhập ID: ");
                     id = scanner.next();
                     studentManager.deleteStudent(id);
                     break;
-                case 4:
+                case GETBYID:
                     System.out.print("Nhập ID: ");
                     id = scanner.next();
                     studentManager.getStudentById(id);
                     break;
-                case 5:
+                case GETBYNAME:
                     System.out.print("Nhập tên: ");
                     scanner.nextLine();
                     name = scanner.nextLine();
                     studentManager.getStudentsByName(name);
                     break;
-                case 6:
+                case SORTBYNAME:
                     studentManager.sortStudentListByName();
                     break;
-                case 7:
+                case SORTBYGPA:
                     studentManager.sortStudentListByGPA();
                     break;
-                case 8:
+                case PRINT:
                     studentManager.printStudentList();
                     break;
-                case 9:
+                case EXIT:
                     isInUsed = false;
                     break;
             }
@@ -56,15 +58,9 @@ public class Main {
     }
     private static void menu(){
         System.out.println("Menu");
-        System.out.println("1. Thêm sinh viên");
-        System.out.println("2. Sửa thông tin sinh viên");
-        System.out.println("3. Xóa sinh viên");
-        System.out.println("4. Tìm kiếm sinh viên theo mã số");
-        System.out.println("5. Tìm kiếm sinh viên theo tên");
-        System.out.println("6. Sắp xếp sinh viên theo tên");
-        System.out.println("7. Sắp xếp sinh viên theo điểm trung bình");
-        System.out.println("8. In ra danh sách sinh viên");
-        System.out.println("9. Thoát");
+        for (Selection selection : Selection.values()){
+            System.out.println(selection.getChoice() + " ." + selection.getDescription());
+        }
         System.out.print("Lựa chọn: ");
     }
     private static Student inputStudent(){
